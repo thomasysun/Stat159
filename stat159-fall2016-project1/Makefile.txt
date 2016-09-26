@@ -1,0 +1,12 @@
+# declaring phony target
+.PHONY: all
+
+# all
+all: paper.html
+
+
+# sections to paper.html
+paper.html: paper/sections/00-abstract.md paper/sections/01-introduction.md paper/sections/02-discussion.md paper/sections/03-conclusions.md
+	cd paper/sections; pandoc 00-abstract.md 01-introduction.md 02-discussion.md 03-conclusions.md -s -o paper.html
+	cd paper/sections; mv paper.html ../
+
