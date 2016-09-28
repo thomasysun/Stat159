@@ -1,12 +1,20 @@
-# declaring phony target
-.PHONY: all
+# variable for md files
+mds = $(wildcard paper/sections/*.md)
+
+
+# phony target
+.PHONY: all clean
+
 
 # all
-all: paper.html
+all: paper.html paper.md
 
 
 # sections to paper.html
-paper.html: paper/sections/00-abstract.md paper/sections/01-introduction.md paper/sections/02-discussion.md paper/sections/03-conclusions.md
-	cd paper/sections/; pandoc 00-abstract.md 01-introduction.md 02-discussion.md 03-conclusions.md -s -o paper.html
-	cd paper/sections/; mv paper.html ../
+paper.html: $(mds)
+	pandoc $(mds) -s -o paper/paper.html
 
+
+# sections to paper.md
+paper.md: $(mds)
+	pandoc $(mds) -s -o paper/paper.md
