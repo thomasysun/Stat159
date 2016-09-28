@@ -1,3 +1,4 @@
+
 # variable for md files
 mds = $(wildcard paper/sections/*.md)
 
@@ -18,3 +19,8 @@ paper.html: $(mds)
 # sections to paper.md
 paper.md: $(mds)
 	pandoc $(mds) -s -o paper/paper.md
+
+
+# clean outputs
+clean:
+	del paper\paper.html
