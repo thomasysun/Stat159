@@ -1,7 +1,7 @@
 
 # Stat 159 Project 1 Paper
 
-![](c:/users/thomas/stat159/stat159-fall2016-project1/images/stat159-logo.png)
+![](https://raw.githubusercontent.com/thomasysun/Stat159/master/stat159-fall2016-project1/images/stat159-logo.png)
 
 ## Abstract
 

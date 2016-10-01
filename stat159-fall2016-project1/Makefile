@@ -8,17 +8,16 @@ mds = $(wildcard paper/sections/*.md)
 
 
 # all
-all: paper.html paper.md
-
-
-# sections to paper.html
-paper.html: $(mds)
-	pandoc $(mds) -s -o paper/paper.html
+all: paper.md paper.html
 
 
 # sections to paper.md
 paper.md: $(mds)
 	pandoc $(mds) -s -o paper/paper.md
+
+# sections to paper.html
+paper.html: $(mds)
+	pandoc -s paper/paper.md -o paper/paper.html
 
 
 # clean outputs

@@ -1,7 +1,7 @@
 Stat 159 Project 1 Paper
 ========================
 
-![](c:/users/thomas/stat159/stat159-fall2016-project1/images/stat159-logo.png)
+![](https://raw.githubusercontent.com/thomasysun/Stat159/master/stat159-fall2016-project1/images/stat159-logo.png)
 
 Abstract
 --------
@@ -37,14 +37,14 @@ everyone track each others' changes. Git also lets you go back to old
 commit versions in case something needs to be revised.
 
 ![Git
-logo](C:/users/thomas/stat159/stat159-fall2016-project1/images/git-logo.png)
+logo](https://raw.githubusercontent.com/thomasysun/Stat159/master/stat159-fall2016-project1/images/git-logo.png)
 
 GitHub is a website that provides the same capabilities as Git.
 Collaborators can check each other's Git repositories on GitHub and pull
 the most recent changes through Git.
 
 ![GitHub
-logo](C:/users/thomas/stat159/stat159-fall2016-project1/images/github-logo.png)
+logo](https://raw.githubusercontent.com/thomasysun/Stat159/master/stat159-fall2016-project1/images/github-logo.png)
 
 Git and GitHub are both promote collaboration and openness in this way.
 Makefiles, Git, and GitHub were all used in this paper for version
@@ -61,7 +61,7 @@ Markdown has plain text formatting syntax which can be used to create
 rich text.
 
 ![Markdown
-logo](C:/users/thomas/stat159/stat159-fall2016-project1/images/markdown-logo.png)
+logo](https://raw.githubusercontent.com/thomasysun/Stat159/master/stat159-fall2016-project1/images/markdown-logo.png)
 
 I used Notepad to write my markdown files. Each section of the paper has
 its own markdown file. I then created a Makefile with the section
@@ -70,15 +70,18 @@ of the sections, I could run make in PowerShell, which would run the
 commands to combine and update the end paper. In order to consolidate
 all the sections into one paper, I used Pandoc. Pandoc is a document
 converter than can convert files between various file types such as PDF,
-HTML, and MD. Pandoc was included as a commmand in the Makefile.
+HTML, and MD. Pandoc was included as a command in the Makefile.
 
 ![Pandoc
-logo](C:/users/thomas/stat159/stat159-fall2016-project1/images/pandoc-logo.png)
+logo](https://raw.githubusercontent.com/thomasysun/Stat159/master/stat159-fall2016-project1/images/pandoc-logo.png)
 
-In this case, I used pandoc to convert the MD files of each section into
-a single MD file as well as an HTML file. Whenever I made notable
-changes to any file in the project, I pushed my changes to the GitHub
-repository of the project so that others can view and pull the changes.
+In this case, I used Pandoc to convert the MD files of each section into
+a single MD file, and ran Pandoc again to create an HTML file. I also
+created a README file in Markdown so others can understand the project.
+Whenever I made notable changes to any file in the project, I pushed my
+changes to the GitHub repository of the project so that others can view
+and pull the changes. I included a .gitignore file in case there are
+files in the project that I do not want Git to track.
 
 Conclusions
 -----------
