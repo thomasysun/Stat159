@@ -1,7 +1,8 @@
 advertising <- read.csv("data/Advertising.csv")
 
-regression <- lm(advertising$Sales ~ advertising$TV)
-regression_summary <- summary(lm(advertising$Sales ~ advertising$TV))
+TV <- advertising$TV
+regression <- lm(advertising$Sales ~ TV)
+regression_summary <- summary(lm(advertising$Sales ~ TV))
 
 png("images//scatterplot-tv-sales.png")
 plot(advertising$TV, advertising$Sales, xlab="TV", ylab="Sales", col="blue")

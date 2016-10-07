@@ -1,33 +1,61 @@
 ---
 title: "Simple Regression Analysis"
 author: "Thomas Sun"
-output: pdf_document
+date: "October 7, 2016"
+output: html_document
 ---
+
 
 ## Abstract
 
-This report attempts to reproduce the results found in Chapter 3 of the book **An Introduction to Statistical Learning**
+This report attempts to reproduce the results found in Chapter 3 of the book **An Introduction to Statistical Learning**. In this chapter, a regression analysis is run on the *Advertising* dataset, containing data on sales and advertising budget for a particular product. Using a simple linear regression model, I find the same estimates of the coefficients, obtain the same quality index results, and similar looking plots as the ones contained in the book.
 
 ## Introduction
 
-The goal is to determine whether there is an effect of advertising on sales. Specifically, if increasing spending on certain mediums of advertising has a relationship with the amount of sales on a product.
+The goal is to determine whether there is an effect of advertising on sales, ideally to increase product sales. Specifically, if increasing spending on certain mediums of advertising has a relationship with the amount of sales on a product. The chapter mainly considers one medium, `TV`, and fits a regression model to it with `Sales`. It finds that there is a strong positive relationship between `TV` and `Sales` and the data points fit the regression line closely.
 
+## Data
 
+Data was obtained by downloading the *Advertising* dataset available on the textbook's website. It contains data of the size of advertising budget for `TV`, `Radio`, and `Newspaper` (in thousands of dollars) for a product in 200 different markets, in addition to the number of sales (in thousands of units) for the product in each market. We specifically are interested in the data for `TV` and `Sales`. 
 
+## Methodology
 
+In order to estimate the relationship between `TV` and `Sales`, a simple linear model is used.
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+$Sales = \beta{0} + \beta{1}*TV$
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+Where $\beta{0}$ and $\beta{1}$ are the regression coefficients. To find an estimate for these coefficients, we use the ordinary least squares method to fit the model. OLS regression was run through RStudio, where the regression coefficients and quality indices (mean squared error, R-squared, F-statistic) are calculated. We also plot `TV` against `Sales` to replicate the scatterplot in the chapter.
 
-```{r}
-summary(cars)
+## Results
+
+```{r, echo=FALSE, warning=FALSE}
+library(knitr)
+load(file="../data/regression.RData")
+
+kable(regression_summary$coefficients, digits = 3, caption = "Regression Coefficients")
+
 ```
 
-You can also embed plots, for example:
+More information in table below
 
-```{r, echo=FALSE}
-plot(cars)
+```{r, echo=FALSE, warning=FALSE}
+library(knitr)
+load(file="../data/regression.RData")
+
+indices <- matrix(c("MSE", "R-squared", "F-Stat", regression_summary$sigma, regression_summary$r.squared, regression_summary$fstatistic[[1]]), nrow = 3, ncol = 2)
+
+kable(indices, col.names= c("Quantity", "Value"), caption = "Regression Quality Indices")
+
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+![Figure 1: Scatterplot of TV and Sales with fitted regression line](https://raw.githubusercontent.com/thomasysun/Stat159/master/stat159-fall2016-hw02/images/scatterplot-tv-sales.png)
+
+Figure 1: Scatterplot of `TV` and `Sales` with fitted regression line
+
+## Conclusions
+
+I successfully managed to reproduce the regression analysis and results found in the textbook. 
+
+
+
+
