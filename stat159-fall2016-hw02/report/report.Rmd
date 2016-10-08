@@ -53,9 +53,7 @@ kable(indices, col.names= c("Quantity", "Value"), caption = "Regression Quality 
 The mean squared error is relatively low while the F-Statistic is relatively large, suggesting the regression estimations are high quality. The scatterplot below is generated to visually interepret the data. A fitted regression line is added to compare the data points to the sample regression line. The data points seem to follow along the line quite closely with few outliers.
 
 
-![Figure 1: Scatterplot of TV and Sales with fitted regression line](https://raw.githubusercontent.com/thomasysun/Stat159/master/stat159-fall2016-hw02/images/scatterplot-tv-sales.png)
-
-Figure 1: Scatterplot of `TV` and `Sales` with fitted regression line
+![Scatterplot of TV and Sales with fitted regression line](https://raw.githubusercontent.com/thomasysun/Stat159/master/stat159-fall2016-hw02/images/scatterplot-tv-sales.png)
 
 ## Conclusions
 

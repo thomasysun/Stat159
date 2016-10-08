@@ -1,6 +1,6 @@
 
 # phony target
-.PHONY: all data clean
+.PHONY: data all clean
 
 
 # all
@@ -8,15 +8,15 @@ all: report.html eda-output.txt regression.RData
 
 #data
 data:
-	curl -o data/Advertising.csv "http://www-bcf.usc.edu/~gareth/ISL/Advertising.csv"
+	curl "http://www-bcf.usc.edu/~gareth/ISL/Advertising.csv" -o data/Advertising.csv
 
 # report.Rmd to report.html
 report.html: report/report.Rmd data/regression.RData images/scatterplot-tv-sales.png
-	cd report; pandoc report.Rmd -s -o report.html
+	cd report; Rscript -e "library(knitr); knit('report.Rmd');" ; pandoc -s report.md -o report.html; rm report.md
 
 # sections to paper.html
 regression.RData: code/regression-script.r data/Advertising.csv
-	RScript -e 'save(regression, regression_summary, file = 'data//regression.RData')'
+	RScript code/regression-script.r
 
 # eda
 eda-output.txt: code/eda-script.R data/Advertising.csv
@@ -24,4 +24,6 @@ eda-output.txt: code/eda-script.R data/Advertising.csv
 
 # clean outputs
 clean:
-	rm report/report.html
+	rm -f report/report.html
+
+  
