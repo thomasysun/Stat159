@@ -9,4 +9,4 @@ regression.RData is an R file that contains the objects advertising and advertis
 Thanks to Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani for providing the Advertising dataset and the textbook which contains their regression analysis.
 
 The link to the Advertising dataset can be found here:
-!(http://www-bcf.usc.edu/~gareth/ISL/Advertising.csv)
+http://www-bcf.usc.edu/~gareth/ISL/Advertising.csv
