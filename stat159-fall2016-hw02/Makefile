@@ -12,7 +12,7 @@ data:
 
 # report.Rmd to report.html
 report.html: report/report.Rmd data/regression.RData images/scatterplot-tv-sales.png
-	pandoc report/report.Rmd -s -o report/report.html
+	cd report; pandoc report.Rmd -s -o report.html
 
 # sections to paper.html
 regression.RData: code/regression-script.r data/Advertising.csv

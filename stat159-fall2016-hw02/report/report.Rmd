@@ -24,9 +24,11 @@ In order to estimate the relationship between `TV` and `Sales`, a simple linear 
 
 $Sales = \beta{0} + \beta{1}*TV$
 
-Where $\beta{0}$ and $\beta{1}$ are the regression coefficients. To find an estimate for these coefficients, we use the ordinary least squares method to fit the model. OLS regression was run through RStudio, where the regression coefficients and quality indices (mean squared error, R-squared, F-statistic) are calculated. We also plot `TV` against `Sales` to replicate the scatterplot in the chapter.
+Where $\beta{0}$ and $\beta{1}$ are the regression coefficients, intercept and slope, respectively. To find an estimate for these coefficients, we use the ordinary least squares method to fit the model. OLS regression was run through RStudio, where the regression coefficients and quality indices (mean squared error, R-squared, F-statistic) are calculated. We also plot `TV` against `Sales` to replicate the scatterplot in the chapter.
 
 ## Results
+
+The estimated coefficients were calculated and found on the following table.
 
 ```{r, echo=FALSE, warning=FALSE}
 library(knitr)
@@ -36,7 +38,7 @@ kable(regression_summary$coefficients, digits = 3, caption = "Regression Coeffic
 
 ```
 
-More information in table below
+Both estimators have low standard deviation and p-value of practially zero, suggesting these calculated values are very statistically significant. In order to assess the fit of the data with the regression line, the following measurements were calculated in the table below.
 
 ```{r, echo=FALSE, warning=FALSE}
 library(knitr)
@@ -48,13 +50,20 @@ kable(indices, col.names= c("Quantity", "Value"), caption = "Regression Quality 
 
 ```
 
+The mean squared error is relatively low while the F-Statistic is relatively large, suggesting the regression estimations are high quality. The scatterplot below is generated to visually interepret the data. A fitted regression line is added to compare the data points to the sample regression line. The data points seem to follow along the line quite closely with few outliers.
+
+
 ![Figure 1: Scatterplot of TV and Sales with fitted regression line](https://raw.githubusercontent.com/thomasysun/Stat159/master/stat159-fall2016-hw02/images/scatterplot-tv-sales.png)
 
 Figure 1: Scatterplot of `TV` and `Sales` with fitted regression line
 
 ## Conclusions
 
-I successfully managed to reproduce the regression analysis and results found in the textbook. 
+Using a simple linear regression, I successfully managed to reproduce the regression analysis and results found in the textbook. The values for the estimated coefficients and quality indices are exactly the same. These results suggest that increasing TV advertising budget means the number of sales for the product will also increase. The regression coefficients appear they can be useful in predicting sales for a given amount of TV advertising. According to the regression line, for every additional unit of TV advertising, sales of the product will increase by .05 units.
+
+However, based on the scatterplot, points seem to increase in variance as sales increases. This violates the simple linear regression assumption that the variables are homoskedastic, which weakens the efficiency of the estimators. This means that variance in the estimators are likely to be larger and the calculated standard errors are likely biased. A more robust analysis can be performed to account for heteroskedasticity.
+
+Additionally, when TV advertising is near zero, the data points seems to fall below the regression line. A non-linear model, such as a square root curve, may fit better.
 
 
 
