@@ -5,7 +5,7 @@ z <- c(TRUE, FALSE, TRUE)
 w <- letters[1:5]
 
 library(testthat)
-test_file("tests/tests.R")
+#test_file("tests/tests.R")
 
 # load the source code of the functions to be tested
 source("functions/range-value.R")
@@ -16,7 +16,7 @@ test_that("range works as expected", {
   y <- c(1, 2, 3, 4, NA)
   
   expect_length(range_value(y), 1)
-  expect_type(range_value(y), 'NA_real_')
+  expect_equal(range_value(y), NA_real_)
 })
 
 context("Test for TRUE/FALSE") 
@@ -34,8 +34,7 @@ context("Test for non numbers")
 test_that("range works as expected", {
   w <- letters[1:5]
   
-  expect_length(range_value(w), 1)
-  expect_error(range_value(w), 'error')
+  expect_error(range_value(w), 'non-numeric argument to binary operator')
 })
 
 source("functions/missing-values.R")
