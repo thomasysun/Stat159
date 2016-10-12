@@ -6,3 +6,4 @@ sessionInfo()
 sink("session-info.txt")
 print(sessionInfo())
 sink()
+

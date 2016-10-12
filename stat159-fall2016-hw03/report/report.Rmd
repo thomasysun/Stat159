@@ -1,0 +1,34 @@
+---
+title: "Multiple Regression Analysis"
+author: "Thomas Sun"
+date: "Wednesday, October 12, 2016"
+output: html_document
+---
+
+## Abstract
+
+## Introduction
+
+## Data
+
+## Methodology
+
+## Results
+
+## Conclusions
+
+```{r, echo=FALSE, warning=FALSE}
+library(knitr)
+load(file="../data/correlation-matrix.RData")
+
+kable(corr_matrix, digits = 3, caption = "Correlation Matrix")
+
+```
+
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
