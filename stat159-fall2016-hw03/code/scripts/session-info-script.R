@@ -1,6 +1,7 @@
 library(rmarkdown)
 library(knitr)
 library(testthat)
+library(xtable)
 
 sessionInfo()
 
