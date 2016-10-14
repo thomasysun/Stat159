@@ -11,14 +11,13 @@ This report attempts to reproduce the results found in Chapter 3 Section 3.2 of 
 
 ## Introduction
 
-The goal is to determine whether there is an effect of advertising on sales, ideally to increase product sales. Specifically, if increasing spending on certain mediums of advertising has a relationship with the amount of sales on a product. This section is concerned with three specific mediums of advertising, `TV`, `Radio`, and `Newspaper`. Then it fits three separate simple regression models to each of them with `Sales`, and finally a multiple regression model including all three. When comparing the three regressors individually in the simple regression case, it finds that `Newspaper` has the strongest effect on `Sales`, followed by `Radio` and `TV`. Meanwhile, when the three are fit together in multiple regression, it finds that `Radio` has the strongest relationship with `Sales`, followed by `TV` while `Newspaper` has almost no relationship.
-
+The goal is to determine whether there is an effect of advertising on sales, ideally to increase product sales. Specifically, if increasing spending on certain mediums of advertising has a relationship with the amount of sales on a product. This section is concerned with three specific mediums of advertising, `TV`, `Radio`, and `Newspaper`. Then it fits three separate simple regression models to each of them with `Sales`, and finally a multiple regression model including all three. When comparing the three regressors individually in the simple regression case, it finds that `Radio` has the strongest relationship on `Sales`, followed by `Newspaper` and `TV`. Meanwhile, when the three are fit together in multiple regression, it finds that `Radio` has the strongest relationship with `Sales`, followed by `TV` while `Newspaper` has almost no relationship.
 
 ## Data
 
 Data was obtained by downloading the *Advertising* dataset available on the textbook's website. It contains data of the size of advertising budget for `TV`, `Radio`, and `Newspaper` (in thousands of dollars) for a product in 200 different markets, in addition to the number of sales (in thousands of units) for the product in each market.
 
-In the textbook, the authors' provide their calculated regression statistics and fit measures for each simple and multiple regression analysis that they perform on the *Advertising* dataset, as well as relevant scatterplots.
+In the textbook, the authors' provide their calculated regression statistics and fit measures for each simple and multiple regression analysis that they perform on the *Advertising* dataset, as well as relevant charts.
 
 ## Methodology
 
@@ -30,7 +29,7 @@ In addition, we use a multiple linear model to find the relationship for all thr
 
 $Sales = \beta{0} + \beta{1}*TV + \beta{2}*Radio + \beta{3}*Newspaper + \epsilon$
 
-Where $\beta{0}$ is the intercept, $\beta{1}$, $\beta{2}$, and $\beta{3}$ are the regression coefficients for their associated predictor. To find an estimate for these coefficients, we use the ordinary least squares method to fit the model. OLS regression was run through RStudio, where the regression coefficients and quality indices (mean squared error, R-squared, F-statistic) are calculated.
+Where $\beta{0}$ is the intercept, $\beta{1}$, $\beta{2}$, and $\beta{3}$ are the regression coefficients for their associated predictor. To find an estimate for these coefficients, we use the ordinary least squares method to fit the model. OLS regression was used to calculate regression coefficients and quality indices (mean squared error, R-squared, F-statistic).
 
 ## Results
 
@@ -75,7 +74,8 @@ print(tab, type="html", caption.placement = "top")
 
 ```
 
-
+\
+The predictors, `TV`, `Radio`, and `Newspaper` all have significant, positive, estimated regression coefficients when regressed individually with `Sales`. The following table shows the estimated coefficients in a multiple regression setting.
 
 ```{r, echo=FALSE, warning=FALSE, results = "asis"}
 library(xtable)
@@ -83,12 +83,16 @@ load(file="../data/regression.RData")
 
 tab <- xtable(regression_summary, 
               digits = 3, 
-              caption = "Multiple of Sales on TV, Radio, and Newspaper",
+              caption = "Multiple Regression of Sales on TV, Radio, and Newspaper",
               align = c("c","c","c","c","c")
               )
 print(tab, type="html", caption.placement = "top")
 
 ```
+
+\
+The multiple regression suggests there is no relationship between `Newspaper` and `Sales` unlike the simple regression. On the other hand, `TV` and `Radio` seem to both be useful in explaining `Sales`. The following correlation matrix shows the correlations between predictors and the response.
+
 
 ```{r, echo=FALSE, warning=FALSE, results = "asis"}
 library(xtable)
@@ -102,6 +106,9 @@ tab <- xtable(corr_matrix,
 print(tab, type="html", caption.placement = "top")
 
 ```
+
+\
+To assess the quality and fit of the model, the following quantities are calculated.
 
 ```{r, echo=FALSE, warning=FALSE, results = "asis"}
 library(xtable)
@@ -125,8 +132,15 @@ print(tab, type="html", caption.placement = "top")
 
 ## Conclusions
 
-Using a multiple linear regression, I successfully managed to reproduce the regression analysis and results found in the textbook. The values for the estimated coefficients and quality indices are exactly the same. These results suggest that increasing TV advertising budget means the number of sales for the product will also increase. The regression coefficients appear they can be useful in predicting sales for a given amount of TV advertising. According to the regression line, for every additional unit of TV advertising, sales of the product will increase by .05 units.
+Using a simple and multiple linear regression analysis, I successfully managed to reproduce the regression analysis and results found in the textbook. The values for the estimated coefficients and quality indices are equivalent.
 
-However, based on the scatterplot, points seem to increase in variance as sales increases. This violates the simple linear regression assumption that the variables are homoskedastic, which weakens the efficiency of the estimators. This means that variance in the estimators are likely to be larger and the calculated standard errors are likely biased. A more robust analysis can be performed to account for heteroskedasticity.
+The large F-statistic, much larger than 1, suggests that there is at least one predictor useful for predicting the response.
 
-Additionally, when TV advertising is near zero, the data points seems to fall below the regression line. A non-linear model, such as a square root curve, may fit better.
+In the simple regressions, it seemed that all three predictors were useful in predicting the reponse. However, the multiple regression showed that `Newspaper` was no longer significant. This is because multiple regression estimates the coeffcient while holding the other predictors constant. Since there is a notable correlation between `Newspaper` and `Radio`, it suggests that the positive relationship between `Newspaper` and `Sales` could be explained mostly by other predictors. Still, `TV` and `Radio` remain signficant as predictors since both maintain a very small p-value. 
+
+To assess model fit, the mean residual error and $R^2$ statistic were calculated. The mean residual error is relatively small while the $R^2$ is close to 1, suggesting the model fits very well with the data.
+
+We assume that the true population regression plane has a linear fit, however this is subject to model bias, which hurts the accuracy of the model. Confidence intervals can be used to determine the accuracy around the average of `Sales`. 
+
+The results from the multiple regression analysis suggest that increasing TV and Radio advertising budget means the number of sales for the product will also increase.
+

@@ -128,12 +128,12 @@ $(document).ready(function () {
 </div>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>The goal is to determine whether there is an effect of advertising on sales, ideally to increase product sales. Specifically, if increasing spending on certain mediums of advertising has a relationship with the amount of sales on a product. This section is concerned with three specific mediums of advertising, <code>TV</code>, <code>Radio</code>, and <code>Newspaper</code>. Then it fits three separate simple regression models to each of them with <code>Sales</code>, and finally a multiple regression model including all three. When comparing the three regressors individually in the simple regression case, it finds that <code>Newspaper</code> has the strongest effect on <code>Sales</code>, followed by <code>Radio</code> and <code>TV</code>. Meanwhile, when the three are fit together in multiple regression, it finds that <code>Radio</code> has the strongest relationship with <code>Sales</code>, followed by <code>TV</code> while <code>Newspaper</code> has almost no relationship.</p>
+<p>The goal is to determine whether there is an effect of advertising on sales, ideally to increase product sales. Specifically, if increasing spending on certain mediums of advertising has a relationship with the amount of sales on a product. This section is concerned with three specific mediums of advertising, <code>TV</code>, <code>Radio</code>, and <code>Newspaper</code>. Then it fits three separate simple regression models to each of them with <code>Sales</code>, and finally a multiple regression model including all three. When comparing the three regressors individually in the simple regression case, it finds that <code>Radio</code> has the strongest relationship on <code>Sales</code>, followed by <code>Newspaper</code> and <code>TV</code>. Meanwhile, when the three are fit together in multiple regression, it finds that <code>Radio</code> has the strongest relationship with <code>Sales</code>, followed by <code>TV</code> while <code>Newspaper</code> has almost no relationship.</p>
 </div>
 <div id="data" class="section level2">
 <h2>Data</h2>
 <p>Data was obtained by downloading the <em>Advertising</em> dataset available on the textbook’s website. It contains data of the size of advertising budget for <code>TV</code>, <code>Radio</code>, and <code>Newspaper</code> (in thousands of dollars) for a product in 200 different markets, in addition to the number of sales (in thousands of units) for the product in each market.</p>
-<p>In the textbook, the authors’ provide their calculated regression statistics and fit measures for each simple and multiple regression analysis that they perform on the <em>Advertising</em> dataset, as well as relevant scatterplots.</p>
+<p>In the textbook, the authors’ provide their calculated regression statistics and fit measures for each simple and multiple regression analysis that they perform on the <em>Advertising</em> dataset, as well as relevant charts.</p>
 </div>
 <div id="methodology" class="section level2">
 <h2>Methodology</h2>
@@ -141,13 +141,13 @@ $(document).ready(function () {
 <p><span class="math inline">\(Sales = \beta{0} + \beta{1}*Predictor + \epsilon\)</span></p>
 <p>In addition, we use a multiple linear model to find the relationship for all three predictors.</p>
 <p><span class="math inline">\(Sales = \beta{0} + \beta{1}*TV + \beta{2}*Radio + \beta{3}*Newspaper + \epsilon\)</span></p>
-<p>Where <span class="math inline">\(\beta{0}\)</span> is the intercept, <span class="math inline">\(\beta{1}\)</span>, <span class="math inline">\(\beta{2}\)</span>, and <span class="math inline">\(\beta{3}\)</span> are the regression coefficients for their associated predictor. To find an estimate for these coefficients, we use the ordinary least squares method to fit the model. OLS regression was run through RStudio, where the regression coefficients and quality indices (mean squared error, R-squared, F-statistic) are calculated.</p>
+<p>Where <span class="math inline">\(\beta{0}\)</span> is the intercept, <span class="math inline">\(\beta{1}\)</span>, <span class="math inline">\(\beta{2}\)</span>, and <span class="math inline">\(\beta{3}\)</span> are the regression coefficients for their associated predictor. To find an estimate for these coefficients, we use the ordinary least squares method to fit the model. OLS regression was used to calculate regression coefficients and quality indices (mean squared error, R-squared, F-statistic).</p>
 </div>
 <div id="results" class="section level2">
 <h2>Results</h2>
 <p>The estimated coefficients for all three simple regressions were calculated and found on the following tables.</p>
 <!-- html table generated in R 3.1.1 by xtable 1.8-2 package -->
-<!-- Fri Oct 14 15:41:18 2016 -->
+<!-- Fri Oct 14 16:40:44 2016 -->
 <table border="1">
 <caption align="top">
 Simple Regression of Sales on TV
@@ -204,7 +204,7 @@ TV
 </tr>
 </table>
 <!-- html table generated in R 3.1.1 by xtable 1.8-2 package -->
-<!-- Fri Oct 14 15:41:18 2016 -->
+<!-- Fri Oct 14 16:40:44 2016 -->
 <table border="1">
 <caption align="top">
 Simple Regression of Sales on Radio
@@ -261,7 +261,7 @@ Radio
 </tr>
 </table>
 <!-- html table generated in R 3.1.1 by xtable 1.8-2 package -->
-<!-- Fri Oct 14 15:41:18 2016 -->
+<!-- Fri Oct 14 16:40:44 2016 -->
 <table border="1">
 <caption align="top">
 Simple Regression of Sales on Newspaper
@@ -317,11 +317,13 @@ Newspaper
 </td>
 </tr>
 </table>
+<p><br />
+The predictors, <code>TV</code>, <code>Radio</code>, and <code>Newspaper</code> all have significant, positive, estimated regression coefficients when regressed individually with <code>Sales</code>. The following table shows the estimated coefficients in a multiple regression setting.</p>
 <!-- html table generated in R 3.1.1 by xtable 1.8-2 package -->
-<!-- Fri Oct 14 15:41:19 2016 -->
+<!-- Fri Oct 14 16:40:44 2016 -->
 <table border="1">
 <caption align="top">
-Multiple of Sales on TV, Radio, and Newspaper
+Multiple Regression of Sales on TV, Radio, and Newspaper
 </caption>
 <tr>
 <th>
@@ -408,8 +410,10 @@ Newspaper
 </td>
 </tr>
 </table>
+<p><br />
+The multiple regression suggests there is no relationship between <code>Newspaper</code> and <code>Sales</code> unlike the simple regression. On the other hand, <code>TV</code> and <code>Radio</code> seem to both be useful in explaining <code>Sales</code>. The following correlation matrix shows the correlations between predictors and the response.</p>
 <!-- html table generated in R 3.1.1 by xtable 1.8-2 package -->
-<!-- Fri Oct 14 15:41:19 2016 -->
+<!-- Fri Oct 14 16:40:44 2016 -->
 <table border="1">
 <caption align="top">
 Correlation Matrix
@@ -499,8 +503,10 @@ Sales
 </td>
 </tr>
 </table>
+<p><br />
+To assess the quality and fit of the model, the following quantities are calculated.</p>
 <!-- html table generated in R 3.1.1 by xtable 1.8-2 package -->
-<!-- Fri Oct 14 15:41:19 2016 -->
+<!-- Fri Oct 14 16:40:44 2016 -->
 <table border="1">
 <caption align="top">
 Quality Indices
@@ -540,9 +546,12 @@ F-Stat
 </div>
 <div id="conclusions" class="section level2">
 <h2>Conclusions</h2>
-<p>Using a multiple linear regression, I successfully managed to reproduce the regression analysis and results found in the textbook. The values for the estimated coefficients and quality indices are exactly the same. These results suggest that increasing TV advertising budget means the number of sales for the product will also increase. The regression coefficients appear they can be useful in predicting sales for a given amount of TV advertising. According to the regression line, for every additional unit of TV advertising, sales of the product will increase by .05 units.</p>
-<p>However, based on the scatterplot, points seem to increase in variance as sales increases. This violates the simple linear regression assumption that the variables are homoskedastic, which weakens the efficiency of the estimators. This means that variance in the estimators are likely to be larger and the calculated standard errors are likely biased. A more robust analysis can be performed to account for heteroskedasticity.</p>
-<p>Additionally, when TV advertising is near zero, the data points seems to fall below the regression line. A non-linear model, such as a square root curve, may fit better.</p>
+<p>Using a simple and multiple linear regression analysis, I successfully managed to reproduce the regression analysis and results found in the textbook. The values for the estimated coefficients and quality indices are equivalent.</p>
+<p>The large F-statistic, much larger than 1, suggests that there is at least one predictor useful for predicting the response.</p>
+<p>In the simple regressions, it seemed that all three predictors were useful in predicting the reponse. However, the multiple regression showed that <code>Newspaper</code> was no longer significant. This is because multiple regression estimates the coeffcient while holding the other predictors constant. Since there is a notable correlation between <code>Newspaper</code> and <code>Radio</code>, it suggests that the positive relationship between <code>Newspaper</code> and <code>Sales</code> could be explained mostly by other predictors. Still, <code>TV</code> and <code>Radio</code> remain signficant as predictors since both maintain a very small p-value.</p>
+<p>To assess model fit, the mean residual error and <span class="math inline">\(R^2\)</span> statistic were calculated. The mean residual error is relatively small while the <span class="math inline">\(R^2\)</span> is close to 1, suggesting the model fits very well with the data.</p>
+<p>We assume that the true population regression plane has a linear fit, however this is subject to model bias, which hurts the accuracy of the model. Confidence intervals can be used to determine the accuracy around the average of <code>Sales</code>.</p>
+<p>The results from the multiple regression analysis suggest that increasing TV and Radio advertising budget means the number of sales for the product will also increase.</p>
 </div>
 
 
