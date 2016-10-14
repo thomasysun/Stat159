@@ -1,60 +1,34 @@
 
-x <- c(1, 2, 3, 4, 5)
-y <- c(1, 2, 3, 4, NA)
-z <- c(TRUE, FALSE, TRUE)
-w <- letters[1:5]
-
-
 # load the source code of the functions to be tested
-source("functions/regression-functions.R")
+source("../functions/regression-functions.R")
 
-context("Test for NA values") 
+context("Test for values of summary statistics") 
 
-test_that("range works as expected", {
-  y <- c(1, 2, 3, 4, NA)
+test_that("returns the value that is expected", {
   
-  expect_length(range_value(y), 1)
-  expect_equal(range_value(y), NA_real_)
+  reg <- lm(mpg ~ disp + hp, data = mtcars)
+  regsum <- summary(reg)
+  
+  expect_equal(residual_sum_squares(reg), sum(reg$residuals^2))
+  expect_length(residual_sum_squares(reg), 1)
+  expect_type(residual_sum_squares(reg), 'double')
+  
+  expect_equal(total_sum_squares(reg), sum((mtcars$mpg - mean(mtcars$mpg))^2))
+  expect_length(total_sum_squares(reg), 1)
+  expect_type(total_sum_squares(reg), 'double')
+  
+  expect_equal(r_squared(reg), regsum$r.squared)
+  expect_length(r_squared(reg), 1)
+  expect_type(r_squared(reg), 'double')
+  
+  expect_equal(f_statistic(reg), regsum$fstatistic[[1]])
+  expect_length(f_statistic(reg), 1)
+  expect_type(f_statistic(reg), 'double')
+  
+  expect_equal(residual_std_error(reg), regsum$sigma)
+  expect_length(residual_std_error(reg), 1)
+  expect_type(residual_std_error(reg), 'double')
+  
 })
 
-context("Test for TRUE/FALSE") 
-
-test_that("range works as expected", {
-  z <- c(TRUE, FALSE, TRUE)
-  
-  expect_equal(range_value(z), 1L)
-  expect_length(range_value(z), 1)
-  expect_type(range_value(z), 'integer')
-})
-
-context("Test for non numbers") 
-
-test_that("range works as expected", {
-  w <- letters[1:5]
-  
-  expect_error(range_value(w), 'non-numeric argument to binary operator')
-})
-
-source("functions/missing-values.R")
-
-context("Test for sum of NA")
-
-test_that("Sum of NA works as expected", {
-  y <- c(1, 2, 3, 4, NA)
-  
-  expect_gte(range_value(x), 0)
-  expect_length(range_value(x), 1)
-  expect_type(range_value(x), 'double')
-})
-
-source("functions/center-measures.R")
-
-context("Test for values of center measures")
-
-test_that("Center measures work as expected", {
-  x <- c(1, 2, 3, 4, 5)
-  
-  expect_length(center_measures(x), 2)
-  expect_type(center_measures(x), 'double')
-})
 

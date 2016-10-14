@@ -1,1 +1,1 @@
-test_file("tests/test-regression.R")
+test_file("code/tests/test-regression.R")
