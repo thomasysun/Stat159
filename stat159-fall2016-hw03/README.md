@@ -9,7 +9,7 @@ To reproduce the analysis and report, run the files eda-script.R and regression-
 regression statistics, tables on coefficients and correlations, and images. The fit and quality statistics were 
 calculated using the functions created in regression-functions.R. 
 
-![](https://licensebuttons.net/l/by/4.0/88x31.png)
+![](https://licensebuttons.net/l/by-sa/4.0/88x31.png)
 
 The media content of this work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
 
