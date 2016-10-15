@@ -10,7 +10,9 @@ regression statistics, tables on coefficients and correlations, and images. The 
 calculated using the functions created in regression-functions.R. 
 
 ![](https://licensebuttons.net/l/by/4.0/88x31.png)
+
 The media content of this work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+
 The software content of this work is licensed under a MIT License. The full text of the license can be found in the LICENSE.txt file.
 
 Author: Thomas Sun

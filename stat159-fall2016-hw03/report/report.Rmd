@@ -7,11 +7,11 @@ output: html_document
 
 ## Abstract
 
-This report attempts to reproduce the results found in Chapter 3 Section 3.2 of the book **An Introduction to Statistical Learning**. In this section, a multiple regression analysis is run on the *Advertising* dataset, containing data on sales and advertising budget for a particular product. Using a multiple linear regression model and a simple linear regression model for each type of advertising, I find the same estimates of the coefficients, obtain the same quality index results, and similar looking plots as the ones contained in the book.
+This report attempts to reproduce the results found in Chapter 3, Section 3.2 of the book **An Introduction to Statistical Learning**. In this section, a multiple regression analysis is run on the *Advertising* dataset, containing data on sales and advertising budget for a particular product. Using a multiple linear regression model and a simple linear regression model for each type of advertising, I find the same estimates of the coefficients, obtain the same quality index results, and similar looking plots as the ones contained in the book.
 
 ## Introduction
 
-The goal is to determine whether there is an effect of advertising on sales, ideally to increase product sales. Specifically, if increasing spending on certain mediums of advertising has a relationship with the amount of sales on a product. This section is concerned with three specific mediums of advertising, `TV`, `Radio`, and `Newspaper`. Then it fits three separate simple regression models to each of them with `Sales`, and finally a multiple regression model including all three. When comparing the three regressors individually in the simple regression case, it finds that `Radio` has the strongest relationship on `Sales`, followed by `Newspaper` and `TV`. Meanwhile, when the three are fit together in multiple regression, it finds that `Radio` has the strongest relationship with `Sales`, followed by `TV` while `Newspaper` has almost no relationship.
+The goal is to determine whether there is an effect of advertising on sales, ideally to increase product sales. Specifically, if increasing spending on certain mediums of advertising has a relationship with the amount of sales on a product. This section is concerned with three specific mediums of advertising, `TV`, `Radio`, and `Newspaper`. For each medium, it fits three separate simple regression models to `Sales`, and finally a multiple regression model including all three. When comparing the three regressors individually in the simple regression case, the textbook finds that `Radio` has the strongest relationship on `Sales`, followed by `Newspaper` and `TV`. Meanwhile, when the three are fit together in multiple regression, it finds that `Radio` has the strongest relationship with `Sales`, followed by `TV` while `Newspaper` has almost no relationship.
 
 ## Data
 
@@ -21,7 +21,7 @@ In the textbook, the authors' provide their calculated regression statistics and
 
 ## Methodology
 
-In order to find the relationship between `Sales` on `TV`, `Radio`, and `Newspaper`, a simple linear model is used for each predictor.
+In order to find the relationship between `Sales` on `TV`, `Radio`, and `Newspaper`, we assume the relationship between the independent and dependent variables is linear. A simple linear model is used for each predictor.
 
 $Sales = \beta{0} + \beta{1}*Predictor + \epsilon$
 
@@ -29,7 +29,7 @@ In addition, we use a multiple linear model to find the relationship for all thr
 
 $Sales = \beta{0} + \beta{1}*TV + \beta{2}*Radio + \beta{3}*Newspaper + \epsilon$
 
-Where $\beta{0}$ is the intercept, $\beta{1}$, $\beta{2}$, and $\beta{3}$ are the regression coefficients for their associated predictor. To find an estimate for these coefficients, we use the ordinary least squares method to fit the model. OLS regression was used to calculate regression coefficients and quality indices (mean squared error, R-squared, F-statistic).
+Where $\beta{0}$ is the intercept, $\beta{1}$, $\beta{2}$, and $\beta{3}$ are the regression coefficients for their associated predictor, and $\epsilon$ is the error term. To find an estimate for these coefficients, we use the ordinary least squares method to fit the model. OLS regression was used to calculate regression coefficients and quality indices (mean squared error, R-squared, F-statistic).
 
 ## Results
 
@@ -108,7 +108,7 @@ print(tab, type="html", caption.placement = "top")
 ```
 
 \
-To assess the quality and fit of the model, the following quantities are calculated.
+The positive correlation between `Newspaper` and `Sales` may explain the notable difference in regression results of `Newspaper`. To assess the quality and fit of the model, the following quantities are calculated.
 
 ```{r, echo=FALSE, warning=FALSE, results = "asis"}
 library(xtable)
