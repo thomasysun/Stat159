@@ -1,9 +1,13 @@
-# variable for md files
-mds = $(wildcard paper/sections/*.md)
 
+cdcs = cd code/scripts && Rscript
+tests = test-that.R
+eda = eda-script.R
+regression = regression-script.R
+session = session-info-script.R
+report = report/report.html
 
 # phony target
-.PHONY: all data tests eda regression report clean
+.PHONY: all data tests session eda regression report clean
 
 
 # all
@@ -13,18 +17,26 @@ all: eda regression report
 data:
 	curl "http://www-bcf.usc.edu/~gareth/ISL/Advertising.csv" -o data/Advertising.csv
 
+# runs code in session.R
+session:
+	$(cdcs) $(session)
+
+# runs code in test-that.R	
 tests:
-	cd code && Rscript -e 'library("testthat")' ; test_dir("tests")'
+	cd code && Rscript $(tests)
+	
+# runs code in eda-script.R
+eda:
+	$(cdcs) $(eda)
+	
+# runs code in regression-script.R
+regression:
+	$(cdcs) $(regression)
 
 # report.Rmd to report.pdf
-report/report.pdf: report/report.Rmd
+report: report/report.Rmd
 	cd report && Rscript -e 'library(rmarkdown) ; render("report.Rmd")'
 
-# sections to paper.html
-paper.html: $(mds)
-	pandoc -s paper/paper.md -o paper/paper.html
-
-
-# clean outputs
+# runs code in eda-script.R
 clean:
-	rm paper\paper.html
+	rm -f report/report.html

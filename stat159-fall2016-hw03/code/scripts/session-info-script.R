@@ -5,7 +5,7 @@ library(xtable)
 
 sessionInfo()
 
-sink("session-info.txt")
+sink("../../session-info.txt")
 print(sessionInfo())
 sink()
 
