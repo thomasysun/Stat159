@@ -33,10 +33,10 @@ eda:
 regression:
 	$(cdcs) $(regression)
 
-# report.Rmd to report.pdf
+# report.Rmd to report.html
 report: report/report.Rmd
 	cd report && Rscript -e 'library(rmarkdown) ; render("report.Rmd")'
 
-# runs code in eda-script.R
+# clean outputs
 clean:
 	rm -f report/report.html
