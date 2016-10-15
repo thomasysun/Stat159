@@ -41,7 +41,7 @@ load(file="../data/regression.RData")
 
 tab <- xtable(regressionTV_summary, 
               digits = 3, 
-              caption = "Simple Regression of Sales on TV",
+              caption = "Figure 1: Simple Regression of Sales on TV",
               align = c("c","c","c","c","c")
               )
 print(tab, type="html", caption.placement = "top")
@@ -54,7 +54,7 @@ load(file="../data/regression.RData")
 
 tab <- xtable(regressionRadio_summary, 
               digits = 3, 
-              caption = "Simple Regression of Sales on Radio",
+              caption = "Figure 2: Simple Regression of Sales on Radio",
               align = c("c","c","c","c","c")
               )
 print(tab, type="html", caption.placement = "top")
@@ -67,7 +67,7 @@ load(file="../data/regression.RData")
 
 tab <- xtable(regressionNewspaper_summary, 
               digits = 3, 
-              caption = "Simple Regression of Sales on Newspaper",
+              caption = "Figure 3: Simple Regression of Sales on Newspaper",
               align = c("c","c","c","c","c")
               )
 print(tab, type="html", caption.placement = "top")
@@ -83,7 +83,7 @@ load(file="../data/regression.RData")
 
 tab <- xtable(regression_summary, 
               digits = 3, 
-              caption = "Multiple Regression of Sales on TV, Radio, and Newspaper",
+              caption = "Figure 4: Multiple Regression of Sales on TV, Radio, and Newspaper",
               align = c("c","c","c","c","c")
               )
 print(tab, type="html", caption.placement = "top")
@@ -91,7 +91,7 @@ print(tab, type="html", caption.placement = "top")
 ```
 
 \
-The multiple regression suggests there is no relationship between `Newspaper` and `Sales` unlike the simple regression. On the other hand, `TV` and `Radio` seem to both be useful in explaining `Sales`. The following correlation matrix shows the correlations between predictors and the response.
+The multiple regression suggests there is no relationship between `Newspaper` and `Sales` unlike the simple regression. On the other hand, `TV` and `Radio` seem to both be useful in explaining `Sales`. The following correlation matrix and scatterplot matrix illustrate the correlations and relationship between all the variables.
 
 
 ```{r, echo=FALSE, warning=FALSE, results = "asis"}
@@ -100,15 +100,17 @@ load(file="../data/correlation-matrix.RData")
 
 tab <- xtable(corr_matrix,
               digits = 3,
-              caption = 'Correlation Matrix',
+              caption = 'Figure 5: Correlation Matrix',
               align = c("c","c","c","c","c")
               )
 print(tab, type="html", caption.placement = "top")
 
 ```
 
+![Figure 6: Scatterplot Matrix of TV, Radio, Newspaper, and Sales](../images/scatterplot-matrix.png)
+
 \
-The positive correlation between `Newspaper` and `Sales` may explain the notable difference in regression results of `Newspaper`. To assess the quality and fit of the model, the following quantities are calculated.
+The positive correlation between `Newspaper` and `Radio` may explain the notable difference in regression results of `Newspaper`. To assess the quality and fit of the model, the following quantities are calculated.
 
 ```{r, echo=FALSE, warning=FALSE, results = "asis"}
 library(xtable)
@@ -123,22 +125,23 @@ colnames(tab) <- "Value"
 
 tab <- xtable(tab, 
               digits = 3,
-              caption = "Quality Indices",
+              caption = "Figure 7: Quality Indices",
               align = c("c","c")
               )
 print(tab, type="html", caption.placement = "top")
 
 ```
 
+
 ## Conclusions
 
 Using a simple and multiple linear regression analysis, I successfully managed to reproduce the regression analysis and results found in the textbook. The values for the estimated coefficients and quality indices are equivalent.
 
-The large F-statistic, much larger than 1, suggests that there is at least one predictor useful for predicting the response.
+The large F-statistic, calculated in Figure 7, suggests that there is at least one predictor useful for predicting the response.
 
-In the simple regressions, it seemed that all three predictors were useful in predicting the reponse. However, the multiple regression showed that `Newspaper` was no longer significant. This is because multiple regression estimates the coeffcient while holding the other predictors constant. Since there is a notable correlation between `Newspaper` and `Radio`, it suggests that the positive relationship between `Newspaper` and `Sales` could be explained mostly by other predictors. Still, `TV` and `Radio` remain signficant as predictors since both maintain a very small p-value. 
+In the simple regressions, it seemed that all three predictors were useful in predicting the reponse. However, from Figure 4, the multiple regression showed that `Newspaper` was no longer significant. This is because multiple regression estimates the coeffcient while holding the other predictors constant. Since there is a notable correlation between `Newspaper` and `Radio`, it suggests that the positive relationship between `Newspaper` and `Sales` could be explained mostly by other predictors. Still, `TV` and `Radio` remain signficant as predictors since both maintain a very small p-value. 
 
-To assess model fit, the mean residual error and $R^2$ statistic were calculated. The mean residual error is relatively small while the $R^2$ is close to 1, suggesting the model fits very well with the data.
+To assess model fit, the mean residual error and $R^2$ statistic were calculated in Figure 7. The mean residual error is relatively small while the $R^2$ is close to 1, suggesting the model fits very well with the data.
 
 We assume that the true population regression plane has a linear fit, however this is subject to model bias, which hurts the accuracy of the model. Confidence intervals can be used to determine the accuracy around the average of `Sales`. 
 
