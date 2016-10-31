@@ -1,18 +1,16 @@
 \documentclass{article}
 
-%<<setup, include=FALSE>>=
-%library(knitr)
-%@
 \title{Simple Regression Analysis}
 
 \author{Thomas Sun}
 
 \date{October 31, 2016}
 
-\begin{document}
-\SweaveOpts{concordance=TRUE}
-\maketitle
+\usepackage{float}
 
+\begin{document}
+
+\maketitle
 
 \begin{abstract}
 
@@ -59,24 +57,33 @@ Both estimators have low standard deviation and p-value of practially zero, sugg
 library(xtable)
 load(file="regression.RData")
 
-indices <- matrix(c(regression_summary$sigma, regression_summary$r.squared, regression_summary$fstatistic[[1]]), nrow = 3, ncol = 1)
-rownames(indices) <- c("MSE", "R-squared", "F-Stat")
+indices <- matrix(c("MSE", "R-squared", "F-Stat", 
+                    round(regression_summary$sigma,2), 
+                    round(regression_summary$r.squared, 2), 
+                    round(regression_summary$fstatistic[[1]]), 5),
+                  nrow = 3, ncol = 2)
 
-
-xtable(indices, label="Result",
+xt <- xtable(indices, label="Result",
        caption = "Regression Quality Indices")
+names(xt) <- c('Quantity', 'Value')
+print(xt, include.rownames=FALSE)
+
 @
 
 The mean squared error is relatively low while the F-Statistic is relatively large, suggesting the regression estimations are high quality. The scatterplot below is generated to visually interepret the data. A fitted regression line is added to compare the data points to the sample regression line. The data points seem to follow along the line quite closely with few outliers.
-\begin{figure}
-  \caption{Scatterplot of TV and Sales with fitted regression line}
+
+\begin{figure}[H]
   \centering
     \includegraphics{images/scatterplot-tv-sales.png}
+      \caption{Scatterplot of TV and Sales with fitted regression line}
 \end{figure}
 
 
+\section{Conclusions}
+Using a simple linear regression, I successfully managed to reproduce the regression analysis and results found in the textbook. The values for the estimated coefficients and quality indices are exactly the same. These results suggest that increasing TV advertising budget means the number of sales for the product will also increase. The regression coefficients appear they can be useful in predicting sales for a given amount of TV advertising. According to the regression line, for every additional unit of TV advertising, sales of the product will increase by .05 units.
 
+However, based on the scatterplot, points seem to increase in variance as sales increases. This violates the simple linear regression assumption that the variables are homoskedastic, which weakens the efficiency of the estimators. This means that variance in the estimators are likely to be larger and the calculated standard errors are likely biased. A more robust analysis can be performed to account for heteroskedasticity.
 
-
+Additionally, when TV advertising is near zero, the data points seems to fall below the regression line. A non-linear model, such as a square root curve, may fit better.
 
 \end{document}
